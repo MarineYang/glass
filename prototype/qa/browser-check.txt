@@ -1,0 +1,11 @@
+2026-09-30 / Orca embedded browser
+PASS: opening screen and all three chapters
+PASS: wrong answer feedback, retry, correct answers, ending
+PASS: reload persistence after chapter 1
+PASS: stamp reward and collection
+PASS: local letter save and Korean shared-letter URL rendering
+PASS: 390px clue screenshot visually inspected
+PASS: collection viewport width=390, document scrollWidth=375 (no horizontal overflow)
+NOTE: first end-to-end run's final width-equals-390 assertion failed because Orca resized viewport back to desktop (1997px). Width was reset and no-overflow condition rechecked successfully.
+PASS: LAN HTTP response 200
+NOT TESTED: physical Android, GPS acquisition, speech output, actual glasses

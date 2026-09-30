@@ -1,0 +1,8 @@
+html, body, #root { width: 100%; height: 100%; margin: 0; background: var(--uit-color-background-window); }
+* { box-sizing: border-box; }
+.counter { display: flex; flex-direction: column; gap: 24px; width: 100%; height: 100%; min-height: 0; padding: 8px 24px 24px; }
+.readout { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 0; }
+.eyebrow { font-size: 16px; letter-spacing: .18em; color: #b6f5db; margin: 8px 0; }
+output { display: block; font-size: 104px; line-height: 1.2; font-weight: 600; font-variant-numeric: tabular-nums; color: white; }
+.hint { font-size: 18px; color: #bfc8d2; margin: 12px 0; }
+.controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
