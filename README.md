@@ -1,77 +1,41 @@
-# Glass 개발 프로젝트
+# 한걸음 — 친구가 남긴 길을 걷다
 
-2026년 9월 30일 기준 대화 인계 기록입니다. 이 디렉토리는 기존 2D 프로젝트와 분리한 글래스 앱 개발 공간입니다.
+장소 세 곳과 이야기를 엮어 친구에게 링크로 보내는 소셜 여행 앱의 첫 테스트 버전입니다.
 
-## 현재 목표
+**서비스:** https://marineyang.github.io/glass/
 
-글래스 기기 없이 시뮬레이터 또는 브라우저 미리보기를 사용해 앱 개발을 시작합니다. 사용자는 아직 Ray-Ban Meta 및 관련 하드웨어를 보유하지 않았습니다. 앱 아이디어는 확정하지 않았습니다.
+## 지금 되는 것
 
-## 논의한 개발 경로
+- 지도에서 장소 3곳 선택 → 이야기 작성 → 코스 완성 → 링크 공유
+- 받은 링크만으로 코스 열기, 저장, 나만의 버전 만들기
+- 현재 위치와 다음 장소까지 직선거리 표시, 외부 지도 길찾기 연결
+- GPS 근처 도착 확인 또는 직접 방문 기록, 완주 메모
+- 휴대폰에 코스·초안·방문 기록 저장
 
-- 화면 앱: Meta Ray-Ban Display용 웹앱. 공식 웹앱 저장소와 UI Toolkit을 검토하고 브라우저에서 화면과 키보드 조작을 시험합니다.
-- 모바일 연동 앱: iOS 또는 Android DAT SDK와 Mock Device Kit를 검토합니다. Display 웹앱 시뮬레이션과 구분합니다.
-- 카메라 기반 AI 기능은 샘플 이미지나 웹캠으로 별도 검증할 수 있으나 실제 기기 연동 검증을 대체하지 않습니다.
+계정·공개 피드·댓글·기기 간 동기화는 아직 없습니다. 공유 링크 자체에 코스가 담깁니다. 방문 기록과 완주 메모는 공유되지 않으며, 저장한 링크의 수정·회수는 지원하지 않습니다. 지도 점선은 방문 순서이고 보행 경로가 아닙니다. 홈의 두 코스는 현장 답사한 추천 경로가 아닌 기능 체험 예시입니다.
 
-공식 FAQ는 브라우저 시뮬레이터와 Mock Device Kit를 안내합니다. 연결된 상세 문서는 로그인 요구로 내용을 확인하지 못했습니다. 실제 제공 범위와 계정 접근 가능 여부는 개발 시작 시 다시 확인해야 합니다.
+## 개발
 
-## 아이디어 후보
-
-작업 순서 안내, 사진과 음성 작업일지, 외국어 학습 등을 논의했습니다. 작업 순서 도우미는 제안일 뿐 사용자가 선택한 사양이 아닙니다.
-
-## 다음 작업
-
-1. 공식 샘플과 라이선스 및 실행 요구사항 확인.
-2. 이 폴더 안에 최소 개발 환경 구성.
-3. 브라우저에서 실행하고 방향키 이동과 선택 동작 검증.
-4. 앱 주제를 정하고 핵심 기능 하나 구현.
-
-현재 생성한 것은 이 인계 문서뿐입니다. SDK 설치, 앱 구현, 개발 서버 실행은 아직 하지 않았습니다. 기존 2D 제품 코드를 변경하지 않았습니다.
-
-## 참고 자료
-
-- [공식 웹앱 저장소](https://github.com/facebook/meta-wearables-webapp)
-- [공식 개발자 FAQ](https://developers.meta.com/wearables/faq/)
-- [Display 시뮬레이션 안내](https://wearables.developer.meta.com/docs/develop/dat/display-simulation)
-- [Mock Device Kit 안내](https://wearables.developer.meta.com/docs/develop/dat/mock-device-kit/)
-
-판매량, SDK 버전, 배포 정책 등 이전 대화의 시점 의존 정보는 확정 사양으로 사용하지 않고 필요할 때 공식 자료로 재검증합니다.
-
-## 실행 가능한 테스트 앱 (2026-09-30)
-
-`counter/`에 React + TypeScript + Vite와 공식 `@wearables-ui-toolkit/mrbd`를 사용한 **글래스 카운터**를 추가했습니다.
+Node.js 22.18+ 권장.
 
 ```sh
-cd counter
+cd travel
 npm ci
+npm test
 npm run build
-npm run preview -- --port 4173
+npm run dev
 ```
 
-- 접속: http://127.0.0.1:4173/
-- 웨일에 설치된 **Meta Ray-Ban Display Simulator** 확장앱을 클릭하면 공식 시뮬레이터가 표시됩니다.
-- 방향키로 버튼 이동, Enter로 실행합니다. `+1 더하기`, `−1 빼기`, `초기화`를 제공합니다.
-- 숫자는 0~999 범위이며 새로고침하면 0으로 돌아갑니다.
-- 개발 중에는 `npm run dev`를 사용합니다. 미리보기 서버는 종료할 때까지 실행됩니다.
-- TypeScript 검사와 프로덕션 빌드 통과, 공식 시뮬레이터 내 앱 화면 표시 확인. 실기기 테스트는 수행하지 않았습니다.
-- 공식 참고 저장소는 `vendor/meta-wearables-webapp/`에 내려받았습니다(BSD 라이선스). 앱은 이 저장소에 의존하지 않으며 npm 패키지와 잠금 파일로 설치합니다. UI Toolkit 라이선스는 Apache-2.0입니다.
+개발 주소: http://localhost:4181/ . 안드로이드에서는 위 서비스 HTTPS 주소를 사용하면 같은 Wi-Fi 없이 접속하고 위치 권한을 요청할 수 있습니다. 모바일 HTTP LAN 접속에서는 GPS가 제한됩니다.
 
-공식 시뮬레이터: https://chromewebstore.google.com/detail/jpjlmmodokemlepklkdbimceggpbjcll
+배포: `travel/dist/`를 GitHub Pages `gh-pages` 브랜치 루트에 게시합니다. 소스는 `main`에 유지합니다. 재배포 절차는 [MVP 문서](docs/social-travel-mvp.md)에 있습니다.
 
-## 앱 기획
+## 기획과 보관 자료
 
-- [비밀동네 기획서 v0.2](docs/secret-neighborhood-plan.md): 지도 기반 탐정 놀이, 동네 탐험·수집, 친구의 장소 편지를 결합한 게임. 첫 사건 콘셉트, MVP 범위, 기술 검증 과제와 사용자 검증 계획을 정리했습니다.
+- [소셜 여행 MVP 기획·테스트 가이드](docs/social-travel-mvp.md)
+- [후속 게임 기획: 비밀동네](docs/secret-neighborhood-plan.md)
+- [기존 글래스 개발 기록](docs/archive/glass-development-history.md)
+- `counter/`: Meta Display UI Toolkit 카운터
+- `prototype/`: 기존 탐정 게임과 가상 AR 마을 테스트. 실제 XR 공간 앵커 구현은 아님
 
-## 비밀동네 플레이 프로토타입
-
-`prototype/`에 스마트폰용 첫 사건을 구현했습니다. [실행 및 기능 안내](prototype/README.md)
-
-```sh
-cd prototype
-npm ci
-npm run build
-npm run preview -- --strictPort
-```
-
-같은 Wi-Fi의 휴대폰 Chrome에서 서버가 출력하는 Network 주소(이번 실행: http://192.168.1.117:4180/)를 엽니다. **지금 여기서 체험하기**로 세 단서, 사건 해결, 우표와 편지를 체험할 수 있습니다. 현재 지도는 가상 도식이며 실제 길찾기는 없습니다. Wi-Fi HTTP 접속에서는 GPS 대신 수동 도착 확인을 사용합니다. GPS 사용에는 HTTPS가 필요합니다.
-
-AR 콘셉트 추가: [1인칭 가상 동네 체험](http://192.168.1.117:4180/ar.html). 가상 공간에 고정된 봉투 단서와 바닥 경로를 따라 사건을 진행합니다. 실제 공간 추적이나 Meta 기기의 공간 앵커를 재현한 것은 아닙니다.
+지도: Leaflet + OpenStreetMap. 첫 버전은 정적 웹앱이며 별도 앱 서버나 유료 API 키를 사용하지 않습니다.
